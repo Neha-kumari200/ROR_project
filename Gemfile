@@ -11,9 +11,13 @@ gem 'sqlite3'
 gem 'puma', '~> 3.11'
 #user auth
 gem 'devise'
+gem 'rails_admin', '~> 2.0'
+gem 'cancancan'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
-gem 'bootstrap-sass', '~> 3.3.5'
+gem 'bootstrap-sass', '~> 3.3.5'     
+gem 'jquery-rails'
+#gem 'bootstrap', '~> 4.1.1'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
@@ -27,6 +31,7 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
+# gem 'cancancan'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -35,6 +40,7 @@ gem 'mini_magick', '~> 4.8'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+#gem 'simple_form', '~> 5.0', '>= 5.0.2'
 #image upload to Amazone s3
 #gem 'carrierwave', "0.10.0"
 #gem 'fog', '~> 1.37.0'
@@ -55,6 +61,10 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'guard', '~> 2.16', '>= 2.16.1'
+  gem 'guard-livereload', '~> 2.5', '>= 2.5.2', require: false
+  gem "better_errors"
+
   #local ENV vars
   gem "figaro"
 end
@@ -69,3 +79,4 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem "binding_of_caller"

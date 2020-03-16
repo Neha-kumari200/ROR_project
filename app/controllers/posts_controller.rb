@@ -1,37 +1,40 @@
 class PostsController < ApplicationController
-   before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_account!
+  before_action :set_post, only: [:show, :edit, :update, :destroy]
 
   def index
     @posts = Post.all
   end  
 
   def new
-    @post = current_account.posts.build	
+    @post = current_account.posts.new	
+    #@post = Post.new
   end
-
+  
   def create
-  	@post = current_account.posts.build(post_params)
-
+  	@post = current_account.posts.new(post_params)
+    #@post = Post.new(post_params)
     if @post.save
-      redirect_to @post, flash: { success: "post was created successfully!"}
+      flash[:notice] = "post was created successfully!"
+      redirect_to @post
     else
-      redirect_to new_post_path, flash: { danger: "post was not saved!"}
+      flash[:notice] = "post was not saved!"
+      redirect_to new_post_path
     end  
   end
 
   def show
-    @post = Post.find(params[:id])
+
   end
 
   def edit
-    #@post = Post.find(params[:id])
+  
   end 
 
   def update
-    #@post = Post.find(params[:id])
-
     if @post.update(post_params)
-      redirect_to @post
+      flash[:notice] = "post was Updated successfully!"
+      redirect_to @post 
     else
       render 'edit' 
     end   
@@ -39,7 +42,8 @@ class PostsController < ApplicationController
 
   def destroy
     @post.destroy
-    redirect_to root_path
+    flash[:notice] = "post '#{@post.title}' deleted successfully!"
+    redirect_to posts_path
   end  
 
   private
@@ -48,9 +52,7 @@ class PostsController < ApplicationController
       @post = Post.find(params[:id])
   end
 
-  
   def post_params
     params.require(:post).permit(:title, :description, :image)
   end
-
 end	

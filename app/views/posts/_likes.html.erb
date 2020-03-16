@@ -1,0 +1,18 @@
+<!--<#% if account_? && current_account.likes?(post) %>
+  <#%= link_to "Unlike", post_like_path(post), method: :delete, remote: true %>
+<#% else %>
+  <#%= link_to "Like", post_like_path(post), method: :post, remote: true %>
+<#% end %>
+
+<#%= post.likes.count %>
+
+<#% post.likes.each do |like| %>
+  <#%= image_tag like.account.like1_url, width: 20 %>
+<#% end %>-->
+
+<% pre_like = @post.likes.find { |like| like.account_id == current_account.id} %>
+<% if pre_like %>
+  <%= button_to 'Unlike', post_like_path(@post, pre_like), method: :delete %>
+<% else %>
+  <%= button_to 'Like', post_likes_path(@post), method: :post %>
+<% end %>

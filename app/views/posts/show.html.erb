@@ -1,25 +1,38 @@
+<style type="text/css">
+  h1
+  {
+    color: #00BFFF;
+  }
+</style>
+
 <div class="page-header">
-  
-  
   <h1>Show Post</h1>
 </div>
-
 <dl class="dl-horizontal">
-  <dt>Title:</dt>
+  <dt style="color: #006400;">Title:</dt>
   <dd><%= @post.title %></dd>
 
-  <dt>Description:</dt>
+  <dt style="color: #006400;">Description:</dt>
   <dd><%= @post.description %></dd>
 
-  <dt>Image:</dt>
+  <dt style="color: #006400;">Image:</dt>
 
   <dd>
   <%= image_tag(url_for(@post.image), :size => "200x150")%>
   </dd>
 </dl>
 
+  <p><%= @post.likes.count %> <%= (@post.likes.count) == 1 ? 'Like' : 'Likes'%></p> 
+  <%= button_to 'Like', post_likes_path(@post), method: :post %>
+
+  #Comments
+    <%= @post.comments.count %>
+    <%= render @post.comments %>
+
+    <h3> add a Comment</h3>
+    <%= render "comments/form" %>
+
+    
 <%= link_to "Edit", edit_post_path(@post) %>
 <%= link_to 'Delete', post_path(@post), method: :delete,class: "text-denger", data: { confirm: "Are You Sure? you want to delete"} %>
 <%= link_to "Home", root_path %>
-
-

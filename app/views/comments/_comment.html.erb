@@ -1,0 +1,29 @@
+<!--<div>comment.clearfix
+  <div class="description">
+  	<p class="comment_description">
+  	  <#%= comment.description %>
+  	</p>
+  </div>
+  <div class="buttons"> 	
+   <#%= link_to "Edit", edit_post_comment_path(comment.post, comment) %>
+   <#%= link_to "Delete", [comment.post, comment], method: :delete, data: {confirm: "are you sure" } %>
+  </div>
+</div>-->
+
+<p>
+  <strong>Comment:</strong>
+  <%= comment.description %>
+</p>
+ 
+<p>
+  <strong>Image:</strong>
+  <%= image_tag(url_for(comment.image), :size => "150x100") %>
+</p>
+<div class="buttons"> 	
+   <%= link_to "Edit", edit_post_comment_path(comment.post, comment) %>
+   <%= link_to "Delete", [comment.post, comment], method: :delete, data: {confirm: "are you sure" } %>
+</div>
+
+
+
+

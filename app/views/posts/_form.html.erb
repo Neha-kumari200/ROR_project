@@ -33,9 +33,11 @@
         <%= link_to 'Destroy', post, method: :delete,class: "text-denger", data: { confirm: "Are You Sure? you want to delete"} %>
       </div>
     <% end %>
-    <%= f.submit "Create Post", class: "btn btn-success" %>
 
-
+    <div class="actions">
+    <!--<#%= f.submit f.object.new_record ? "Save Post" : "Update Post" %> -->
+    <%= f.submit "submit Post", class: "btn btn-success"%>
+    </div>
     <% if @post.persisted? %>
       <%= link_to "Cancel", post, class: "btn btn-link" %>
     <% else %>

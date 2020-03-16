@@ -1,6 +1,25 @@
-<h1 class="mt-5">Welcome to My First Rails Application</h1>
-
-<p class="lead">Please register and sign in to continue..</p>
-
-<%= link_to "Sign Up", new_account_registration_path, class: "btn btn-success" %>
-<%= link_to "Sign In", new_account_session_path, class: "btn btn-secondary" %>
+<style type="text/css">
+.jumbotron {
+    position: relative;
+    background:#000 url('n8.jpeg') center center no-repeat;
+    width: 100%;
+    background-size: cover;
+    overflow: hidden;
+    height: 370px;
+}
+</style>
+<body>
+<div class="jumbotron">
+  <div class="container">
+    <h1 class="mt-5">Welcome to My First Rails Application</h1>
+    <p class="lead">Please register and sign in to continue..</p>
+    <% if current_account %>
+      <%= link_to 'Sign Out', destroy_account_session_path, method: :delete,  class: "btn btn-success" %>
+      <%= link_to "Edit Account", edit_account_registration_path, class: "btn btn-secondary" %>
+      <%= link_to 'Posts', posts_path %>
+    <% else %>
+      <%= link_to "Sign Up", new_account_registration_path, class: "btn btn-success" %>
+      <%= link_to "Sign In", new_account_session_path, class: "btn btn-secondary" %>
+    <% end %>
+</div>
+</body>

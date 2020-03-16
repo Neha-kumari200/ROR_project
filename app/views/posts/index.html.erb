@@ -1,6 +1,19 @@
-<p id="notice"><%= notice %></p>
+<style type="text/css">
+h1
+{
+  color: #2F4F4F;
+}
+th{
+  color: deeppink;
+}
+table {
+  background-color: black;
+  color: white;
+}
+</style>  
+
 <div class="page-header">  
-<h1>All Posts</h1>
+<h1>Listing Posts</h1>
 
 <table>
   <thead>
@@ -22,6 +35,20 @@
         </td>
         <td><%= post.description %></td>
         <td><%= image_tag(url_for(post.image), :size => "200x150") if post.image.attached? %></td>
+
+        <!--<td>
+        <#% pre_like = @post.likes.find { |like| like.account_id == current_account.id} %>
+          <#% if pre_like %>
+            <#%= button_to 'Unlike', post_like_path(@post, pre_like), method: :delete %>
+          <#% else %>
+            <#%= button_to 'Like', post_likes_path(@post), method: :post %>
+          <#% end %>
+        </td>-->
+
+        <td><%= post.likes.count %> <%= (post.likes.count) == 1 ? 'Like' : 'Likes'%></td>
+        <!--<p id="post_<#%= post.id %>_likes"><#%= render partial: "likes", locals: {post: post} %></p>-->
+
+
         <td><%= link_to 'Show', post_path(post) %></td>
         <td><%= link_to 'Edit', edit_post_path(post) %></td>
         <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure do you want delete?' } %></td>
@@ -29,7 +56,6 @@
     <% end %>
   </tbody>
 </table>
-
 <br>
 
 <%= link_to 'New Post', new_post_path, class: 'btn btn-primary' %>

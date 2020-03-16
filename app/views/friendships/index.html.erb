@@ -1,0 +1,16 @@
+<% for account in @accounts %>
+  <div class="account">
+    <p>
+      <strong><%=h account.username %></strong>
+      <%= link_to "Add Friend", friendships_path(:friend_id => account), :method => :post %>
+      <div class="clear"></div>
+    </p>
+  </div>
+<% end %>
+
+<h2>Users Who Have Befriended You</h2>
+<ul>
+  <% for account in @account.inverse_friends %>
+  <li><%= h account.username %></li>
+  <% end %>
+</ul>

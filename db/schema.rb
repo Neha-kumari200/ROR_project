@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_26_075704) do
+ActiveRecord::Schema.define(version: 2020_03_15_222457) do
 
   create_table "accounts", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -25,6 +25,10 @@ ActiveRecord::Schema.define(version: 2020_02_26_075704) do
     t.string "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "admin", default: false
+    t.boolean "superadmin_role"
+    t.boolean "supervisor_role"
+    t.boolean "account_role"
     t.index ["email"], name: "index_accounts_on_email", unique: true
     t.index ["reset_password_token"], name: "index_accounts_on_reset_password_token", unique: true
   end
@@ -55,6 +59,25 @@ ActiveRecord::Schema.define(version: 2020_02_26_075704) do
     t.string "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "post_id"
+    t.string "account_id"
+    t.string "integer"
+  end
+
+  create_table "friendships", force: :cascade do |t|
+    t.integer "account_id"
+    t.integer "friend_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "likes", force: :cascade do |t|
+    t.integer "post_id"
+    t.integer "account_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_likes_on_account_id"
+    t.index ["post_id"], name: "index_likes_on_post_id"
   end
 
   create_table "posts", force: :cascade do |t|

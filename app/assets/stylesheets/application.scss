@@ -10,10 +10,12 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
+ @import "bootstrap";
  *= require_tree .
  *= require bootstrap.min
  *= require_self
  */
+
 
  /* direct_uploads.css */
 
@@ -54,3 +56,29 @@
 input[type=file][data-direct-upload-url][disabled] {
   display: none;
 }
+
+
+body{
+  background: url('background5.jpeg') no-repeat center center;
+  background-size: cover;
+  height: 100%;
+  width: 100%
+}
+
+.navbar-custom { 
+   background-color: #1B2631; 
+} 
+ul.hmenu {
+  list-style: none; 
+  margin: 0 0 2em;
+  padding: 0;
+}
+
+ul.hmenu li {
+  display: inline;  
+}
+
+.footer {
+ background-color: #CCC;
+ border-top: 1px solid blue;
+ }
